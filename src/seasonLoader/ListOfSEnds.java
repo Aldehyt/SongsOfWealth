@@ -10,9 +10,6 @@ public class ListOfSEnds {
     private ListOfSEnds() {
 
     }
-
-    ;
-
     public static ListOfSEnds getInstance() {
         if (instance == null) {
             instance = new ListOfSEnds();

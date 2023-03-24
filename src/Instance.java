@@ -1,8 +1,6 @@
 
 import script.SCRIPT;
-import seasonLoader.ListOfSEnds;
-import seasonLoader.SeasonTimeChecker;
-import seasonLoader.ShowCredits;
+import seasonLoader.*;
 import snake2d.util.file.FileGetter;
 import snake2d.util.file.FilePutter;
 
@@ -13,7 +11,8 @@ public class Instance implements SCRIPT.SCRIPT_INSTANCE {
 
     SeasonTimeChecker seasonTimeChecker = new SeasonTimeChecker();
     ListOfSEnds listOfSEnds = ListOfSEnds.getInstance();
-    static ShowCredits showCredits = new ShowCredits();
+
+    static ListOfSEndsLoader listOfSEndsLoader = new ListOfSEndsLoader(new ShowCredits());
 
     public Instance() {
 
