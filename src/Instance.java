@@ -1,4 +1,4 @@
-import privateEconomy.PrivateEconomy;
+
 import script.SCRIPT;
 import seasonLoader.ListOfSEnds;
 import seasonLoader.SeasonTimeChecker;
@@ -9,13 +9,14 @@ import snake2d.util.file.FilePutter;
 import java.io.IOException;
 
 public class Instance implements SCRIPT.SCRIPT_INSTANCE {
-    ListOfSEnds listOfSEnds = new ListOfSEnds();
-    ShowCredits showCredits = new ShowCredits(listOfSEnds);
-    SeasonTimeChecker seasonTimeChecker = new SeasonTimeChecker(listOfSEnds);
 
+
+    SeasonTimeChecker seasonTimeChecker = new SeasonTimeChecker();
+    ListOfSEnds listOfSEnds = ListOfSEnds.getInstance();
+    static ShowCredits showCredits = new ShowCredits();
 
     public Instance() {
-        PrivateEconomy.getInstance();
+
     }
 
     @Override

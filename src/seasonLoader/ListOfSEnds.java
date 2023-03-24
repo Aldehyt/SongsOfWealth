@@ -2,12 +2,26 @@ package seasonLoader;
 
 import java.util.ArrayList;
 
-public class ListOfSEndsManipulator {
+public class ListOfSEnds {
 
-    public static final ArrayList<ISEnds> listOfSEnds = new ArrayList<>();
+    private static ListOfSEnds instance;
+    public static final ArrayList<ISEnds> myList = new ArrayList<>();
 
-    public void executeOverList(){
-        for(ISEnds element : listOfSEnds){
+    private ListOfSEnds() {
+
+    }
+
+    ;
+
+    public static ListOfSEnds getInstance() {
+        if (instance == null) {
+            instance = new ListOfSEnds();
+        }
+        return instance;
+    }
+
+    public static void iterateOverList() {
+        for (ISEnds element : myList) {
             element.doJob();
         }
     }
