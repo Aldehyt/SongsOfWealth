@@ -3,16 +3,13 @@ import script.SCRIPT;
 import seasonLoader.*;
 import snake2d.util.file.FileGetter;
 import snake2d.util.file.FilePutter;
+import utils.patterns.observer.Observer;
 
 import java.io.IOException;
 
 public class Instance implements SCRIPT.SCRIPT_INSTANCE {
 
-
-    SeasonTimeChecker seasonTimeChecker = new SeasonTimeChecker();
-    ListOfSEnds listOfSEnds = ListOfSEnds.getInstance();
-
-    static ListOfSEndsLoader listOfSEndsLoader = new ListOfSEndsLoader(new ShowCredits());
+    SeasonTimeChecker seasonTimeChecker = new SeasonTimeChecker(new Observer());
 
     public Instance() {
 
@@ -20,7 +17,7 @@ public class Instance implements SCRIPT.SCRIPT_INSTANCE {
 
     @Override
     public void update(double v) {
-        this.seasonTimeChecker.seasonChanged();
+        seasonTimeChecker.seasonChanged();
     }
 
     @Override

@@ -1,12 +1,17 @@
 package seasonLoader;
 
-public class ShowCredits implements ISEnds {
+import utils.patterns.observer.Subscriber;
 
-    public ShowCredits() {
-        System.out.println(" ShowCredits class - created");
-    }
+public class ShowCredits extends Subscriber {
+
+
     @Override
+    public void notified() {
+        super.notified();
+        doJob();
+    }
+
     public void doJob() {
-        System.out.println("Credits $$$");
+        System.out.println("Job is done in: " + this.getClass());
     }
 }
