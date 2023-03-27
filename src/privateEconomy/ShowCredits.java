@@ -1,4 +1,4 @@
-package seasonLoader;
+package privateEconomy;
 
 import utils.patterns.observer.Subscriber;
 

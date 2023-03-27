@@ -10,7 +10,6 @@ public class Observer {
     public void addSubscriber(ISubscriber subscriber) {
         listOfSubscribers.add(subscriber);
     }
-
     public void notifySubscribers() {
         for (ISubscriber sub : listOfSubscribers) {
             sub.notified();

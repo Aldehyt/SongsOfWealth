@@ -1,8 +1,8 @@
 package seasonLoader;
 
 import game.time.TIME;
+import privateEconomy.ShowCredits;
 import utils.patterns.observer.Observer;
-import utils.patterns.observer.Subscriber;
 
 
 public class SeasonTimeChecker {
