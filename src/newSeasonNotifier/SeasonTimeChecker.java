@@ -1,32 +1,38 @@
-package seasonLoader;
+package newSeasonNotifier;
 
 import game.time.TIME;
-import privateEconomy.ShowCredits;
-import utils.patterns.observer.Observer;
 
 
 public class SeasonTimeChecker {
 
-Observer subsForSeasonStart;
-
-    public SeasonTimeChecker(Observer subsForSeasonStart) {
-        this.subsForSeasonStart = subsForSeasonStart;
-        this.subsForSeasonStart.addSubscriber(new ShowCredits());
-
-    }
-
+    private final IToNotify iToNotify;
     boolean flag = false;
 
-    public void seasonChanged() {
+    public SeasonTimeChecker(IToNotify iToNotify) {
+        this.iToNotify = iToNotify;
+    }
 
-        if (TIME.days().bitCurrent() != 0) {
+    //    public void seasonChanged() {
+//
+//        if (TIME.days().bitCurrent() != 0) {
+//            this.flag = true;
+//        }
+//        if (TIME.days().bitCurrent() == 0 && this.flag) {
+//            iToNotify.update();
+//            this.flag = false;
+//        }
+//
+//    }
+    public void seasonChanged(double seasonEndCheck, double seasonStartCheck) {
+
+        if (TIME.days().bitOfSeason() > seasonEndCheck && !this.flag) {
+            iToNotify.update();
             this.flag = true;
         }
-        if (TIME.days().bitCurrent() == 0 && this.flag) {
-            this.subsForSeasonStart.notifySubscribers();
+        if (TIME.days().bitOfSeason() < seasonStartCheck && this.flag) {
             this.flag = false;
+
         }
 
     }
-
 }

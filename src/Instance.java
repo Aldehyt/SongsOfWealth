@@ -1,15 +1,16 @@
 
+import privateEconomy.PrivateEconomy;
 import script.SCRIPT;
-import seasonLoader.*;
+import newSeasonNotifier.*;
 import snake2d.util.file.FileGetter;
 import snake2d.util.file.FilePutter;
-import utils.patterns.observer.Observer;
+
 
 import java.io.IOException;
 
 public class Instance implements SCRIPT.SCRIPT_INSTANCE {
 
-    SeasonTimeChecker seasonTimeChecker = new SeasonTimeChecker(new Observer());
+    SeasonTimeChecker privateEconomyUpdater = new SeasonTimeChecker(new PrivateEconomy());
 
     public Instance() {
 
@@ -17,7 +18,7 @@ public class Instance implements SCRIPT.SCRIPT_INSTANCE {
 
     @Override
     public void update(double v) {
-        seasonTimeChecker.seasonChanged();
+        privateEconomyUpdater.seasonChanged(3.99, 0.2);
     }
 
     @Override
