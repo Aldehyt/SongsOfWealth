@@ -2,14 +2,18 @@ package privateEconomy;
 
 
 import newSeasonNotifier.IToNotify;
+import privateEconomy.privSectorFlow.InOutPrivateWealth;
+import privateEconomy.privSectorFlow.ResourceProductionOutcome;
 
 
 public class PrivateEconomy implements IToNotify {
-        PrivateEconomyDTO dto = new PrivateEconomyDTO();
-        ResourceProduction resourceProduction = new ResourceProduction(dto);
+    PrivateEconomyDTO dto = new PrivateEconomyDTO();
+    ResourceProductionOutcome resourceProductionOutcome = new ResourceProductionOutcome(dto);
 
-    public void update(){
-        resourceProduction.calcProduction();
+    InOutPrivateWealth inOutPrivateWealth = new InOutPrivateWealth(dto, resourceProductionOutcome);
 
+
+    public void update() {
+        inOutPrivateWealth.calcAllIns();
     }
 }
