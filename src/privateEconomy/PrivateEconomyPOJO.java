@@ -1,9 +1,9 @@
 package privateEconomy;
 
-public class PrivateEconomyDTO {
+public class PrivateEconomyPOJO {
     private double privateSectorWealth;
     private double producedResources;
-    private double producedResourcesPrice;
+    private double summarizedPriceOfAllProducedGoods;
     private double taxRate;
 
     public void setTaxRate(double taxRate) {
@@ -31,11 +31,11 @@ public class PrivateEconomyDTO {
         this.producedResources = producedResources;
     }
 
-    public double getProducedResourcesPrice() {
-        return producedResourcesPrice;
+    public double getSummarizedPriceOfAllProducedGoods() {
+        return summarizedPriceOfAllProducedGoods;
     }
 
-    public void setProducedResourcesPrice(double producedResourcesPrice) {
-        this.producedResourcesPrice = producedResourcesPrice;
+    public void setSummarizedPriceOfAllProducedGoods(double producedResourcesPrice) {
+        this.summarizedPriceOfAllProducedGoods = producedResourcesPrice;
     }
 }

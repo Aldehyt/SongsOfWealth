@@ -1,30 +1,32 @@
 package privateEconomy.privSectorFlow;
 
-import privateEconomy.IInOut;
-import privateEconomy.PrivateEconomyDTO;
+import privateEconomy.PrivateEconomyPOJO;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class InOutPrivateWealth {
-    private final PrivateEconomyDTO dto;
+    private final PrivateEconomyPOJO privateEconomyPOJO;
     private final IInOut[] args;
 
-    public InOutPrivateWealth(PrivateEconomyDTO dto, IInOut... args) {
 
-        this.dto = dto;
+    public InOutPrivateWealth(PrivateEconomyPOJO pojo, IInOut... args) {
+
+        this.privateEconomyPOJO = pojo;
         this.args = args;
     }
 
-    public void calcAllIns() {
 
+    public void calcAllIns() {
         double sum = 0;
         for (IInOut source : args) {
+
             sum += source.results();
+            System.out.println("1 " + privateEconomyPOJO.getSummarizedPriceOfAllProducedGoods());
+            System.out.println("sum " + sum);
         }
-        double wealth = dto.getPrivateSectorWealth();
+        double wealth = privateEconomyPOJO.getPrivateSectorWealth();
         wealth += sum;
-        dto.setPrivateSectorWealth(wealth);
-        System.out.println("Private sector Wealth: " + dto.getPrivateSectorWealth());
+        privateEconomyPOJO.setPrivateSectorWealth(wealth);
+
     }
 }

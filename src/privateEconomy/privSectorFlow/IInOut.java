@@ -1,4 +1,4 @@
-package privateEconomy;
+package privateEconomy.privSectorFlow;
 
 public interface IInOut {
 
