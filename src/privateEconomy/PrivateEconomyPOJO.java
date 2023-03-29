@@ -5,6 +5,15 @@ public class PrivateEconomyPOJO {
     private double producedResources;
     private double summarizedPriceOfAllProducedGoods;
     private double taxRate;
+    private double payouts;
+
+    public void setPayouts(double payouts) {
+        this.payouts = payouts;
+    }
+
+    public double getPayouts() {
+        return payouts;
+    }
 
     public void setTaxRate(double taxRate) {
         this.taxRate = taxRate;
@@ -38,4 +47,5 @@ public class PrivateEconomyPOJO {
     public void setSummarizedPriceOfAllProducedGoods(double producedResourcesPrice) {
         this.summarizedPriceOfAllProducedGoods = producedResourcesPrice;
     }
+
 }

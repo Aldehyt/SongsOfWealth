@@ -10,7 +10,7 @@ import privateEconomy.PrivateEconomyPOJO;
  * This class calculates the total price of all produced goods.
  */
 public class PriceOfProducedGoods implements IInOut {
-    private PrivateEconomyPOJO pojo;
+    private final PrivateEconomyPOJO pojo;
 
 
     public PriceOfProducedGoods(PrivateEconomyPOJO pojo) {
@@ -23,19 +23,15 @@ public class PriceOfProducedGoods implements IInOut {
      * It iterates through all the resources, multiplying each resource into its corresponding price and sums them all up, returning the result.
      */
 
-    public double summarizePriceOfAllProducedGoods() {
+    @Override
+    public double results() {
         double summarizedPriceOfAllProducedGoods = 0;
         for (RESOURCE res : RESOURCES.ALL()) {
             summarizedPriceOfAllProducedGoods += GAME.player().credits().pricesSell.get(res) * GAME.player().res().inProduced.get(res);
-
         }
-        pojo.setSummarizedPriceOfAllProducedGoods(summarizedPriceOfAllProducedGoods);
-        return summarizedPriceOfAllProducedGoods;
+
+        pojo.setSummarizedPriceOfAllProducedGoods(pojo.getSummarizedPriceOfAllProducedGoods() + summarizedPriceOfAllProducedGoods);
+        return pojo.getSummarizedPriceOfAllProducedGoods();
     }
 
-    @Override
-    public double results() {
-        System.out.println("Results of summarizePriceOfAllProducedGoods(): " + summarizePriceOfAllProducedGoods());
-        return summarizePriceOfAllProducedGoods();
-    }
 }

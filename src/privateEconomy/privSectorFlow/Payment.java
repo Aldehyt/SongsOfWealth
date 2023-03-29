@@ -9,7 +9,7 @@ import settlement.stats.STATS;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentIncome implements IInOut {
+public class Payment implements IInOut {
 
     // A Map that stores the payment information for each race
     Map<CharSequence, PaymentPerRace> dictionaryOfPaymentIncome = new HashMap<>();
@@ -18,7 +18,7 @@ public class PaymentIncome implements IInOut {
     private final PrivateEconomyPOJO pojo;
 
     // Constructor that takes a PrivateEconomyPOJO object and adds all races to the payment dictionary
-    public PaymentIncome(PrivateEconomyPOJO pojo) {
+    public Payment(PrivateEconomyPOJO pojo) {
         this.pojo = pojo;
         addRacesToDictionary();
     }
@@ -26,20 +26,27 @@ public class PaymentIncome implements IInOut {
     // Method that calculates the total payment for all races and prints the payment information for each race
     public double calcPayment() {
         double sumPaymentPerRace = 0;
-        double paymentPerRace = 0;
+        double paymentPerRace;
 
         // Iterate through all PaymentPerRace objects in the dictionary and calculate the payment for each race
         for (PaymentPerRace raceMap : dictionaryOfPaymentIncome.values()) {
             paymentPerRace = raceMap.calcPayment();
 
             // Print the payment information for the race
-            System.out.println(raceMap.raceName + " Are taxed by: " + raceMap.taxes + " and that race pays: " + paymentPerRace);
+            System.out.println("[Log purpose] - : The " + raceMap.raceName + " race got payout of " + paymentPerRace + " credits of this season");
 
             // Add the payment for the race to the total payment for all races
             sumPaymentPerRace += paymentPerRace;
+
         }
+        pojo.setPayouts(pojo.getPayouts() + sumPaymentPerRace);
+
+
+        // Update player non-private credits value
+        GAME.player().credits().purchases.IN.inc((int) -pojo.getPayouts());
+
         // Return the total payment for all races
-        return sumPaymentPerRace;
+        return pojo.getPayouts();
     }
 
     // Inner class that represents the payment information for a single race
@@ -47,7 +54,7 @@ public class PaymentIncome implements IInOut {
 
     // Private method that adds all races to the payment dictionary
     private void addRacesToDictionary() {
-        double raceCount = 0;
+        double raceCount;
 
         // Iterate through all races and add a PaymentPerRace object to the dictionary for each race
         for (Race race : RACES.all()) {
@@ -72,13 +79,13 @@ public class PaymentIncome implements IInOut {
         double raceCountInCapitol;
 
         // The tax rate for the race
-        double taxes;
+        double wages;
 
         // Constructor that takes the name of the race, the number of people in the race that live in the capital city, and the tax rate for the race
-        public PaymentPerRace(CharSequence raceName, double raceCountInCapitol, double taxes) {
+        public PaymentPerRace(CharSequence raceName, double raceCountInCapitol, double wages) {
             this.raceName = raceName;
             this.raceCountInCapitol = raceCountInCapitol;
-            this.taxes = taxes;
+            this.wages = wages;
         }
 
         // Method that calculates the payment for the race based on the number of people in the race that live in the capital city, the total population of the capital city, the summarized price of all produced goods, and the tax rate for the race
@@ -89,8 +96,10 @@ public class PaymentIncome implements IInOut {
             if (raceCountInCapitol != 0) {
 
                 // Calculate the payment using the formula
-                formula = (raceCountInCapitol / GAME.player().capitol().population.total().get()) * pojo.getSummarizedPriceOfAllProducedGoods() * taxes;
+                formula = (raceCountInCapitol / GAME.player().capitol().population.total().get()) * pojo.getSummarizedPriceOfAllProducedGoods() * wages;
+
             }
+
             // Return the payment for the race
             return formula;
         }
