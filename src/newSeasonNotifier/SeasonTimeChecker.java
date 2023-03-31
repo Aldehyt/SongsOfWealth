@@ -12,17 +12,7 @@ public class SeasonTimeChecker {
         this.iToNotify = iToNotify;
     }
 
-    //    public void seasonChanged() {
-//
-//        if (TIME.days().bitCurrent() != 0) {
-//            this.flag = true;
-//        }
-//        if (TIME.days().bitCurrent() == 0 && this.flag) {
-//            iToNotify.update();
-//            this.flag = false;
-//        }
-//
-//    }
+
     public void seasonChanged(double seasonEndCheck, double seasonStartCheck) {
 
         if (TIME.days().bitOfSeason() > seasonEndCheck && !this.flag) {

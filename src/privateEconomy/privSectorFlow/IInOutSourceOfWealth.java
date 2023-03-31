@@ -1,6 +1,6 @@
 package privateEconomy.privSectorFlow;
 
-public interface IInOut {
+public interface IInOutSourceOfWealth {
 
     public double results();
 }
