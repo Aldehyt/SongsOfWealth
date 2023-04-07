@@ -1,26 +1,32 @@
 package privateEconomy.privateSector;
 
 import javafx.util.Pair;
+import privateEconomy.production.ProducedGoods;
 import timeCheckEvery.IUpdatable;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class CalculateIncomeProduction implements IUpdatable {
+public class CalculateIncomeFromProduction implements IUpdatable {
 
 
-
-    public CalculateIncomeProduction() {
-
-
+    private final ProducedGoods producedGoods;
+    public CalculateIncomeFromProduction(ProducedGoods producedGoods) {
+        this.producedGoods = producedGoods;
     }
 
+    public double wholeIncome() {
+        Pair<ArrayList<Integer>, ArrayList<Integer>> pair = producedGoods.getProducedGoods();
+        double wholeIncome = 0;
+        for (int i = 0; i < pair.getKey().size(); i++) {
+            wholeIncome += pair.getKey().get(i) * pair.getValue().get(i);
+        }
+        System.out.println(this.getClass() + " - wholeIncome: " + wholeIncome);
+        return wholeIncome;
+    }
 
 
     @Override
     public void updateMe() {
-
+        wholeIncome();
     }
 }

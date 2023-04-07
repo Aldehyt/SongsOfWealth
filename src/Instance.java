@@ -1,6 +1,7 @@
 
 
-import privateEconomy.PrivateEconomyMain;
+import privateEconomy.privateSector.CalculateIncomeFromProduction;
+import privateEconomy.production.ProducedGoods;
 import script.SCRIPT;
 import snake2d.util.file.FileGetter;
 import snake2d.util.file.FilePutter;
@@ -12,10 +13,9 @@ import timeCheckEvery.Updatables;
 import java.io.IOException;
 
 public class Instance implements SCRIPT.SCRIPT_INSTANCE {
-    PrivateEconomyMain pEcoMain = new PrivateEconomyMain();
+
     public IIntervalChangingRate seasonalUpdateChecker = new SeasonalUpdateChecker(
-            new Updatables(pEcoMain.producedGoods,
-                    pEcoMain.calculateIncomeProduction));
+            new Updatables(new CalculateIncomeFromProduction(new ProducedGoods())));
 
 
     public Instance() {
