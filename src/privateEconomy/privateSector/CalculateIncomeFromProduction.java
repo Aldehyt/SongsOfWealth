@@ -1,6 +1,7 @@
 package privateEconomy.privateSector;
 
 import javafx.util.Pair;
+import privateEconomy.production.IProducedGoods;
 import privateEconomy.production.ProducedGoods;
 import timeCheckEvery.IUpdatable;
 
@@ -9,8 +10,8 @@ import java.util.ArrayList;
 public class CalculateIncomeFromProduction implements IUpdatable {
 
 
-    private final ProducedGoods producedGoods;
-    public CalculateIncomeFromProduction(ProducedGoods producedGoods) {
+    private final IProducedGoods producedGoods;
+    public CalculateIncomeFromProduction(IProducedGoods producedGoods) {
         this.producedGoods = producedGoods;
     }
 

@@ -8,7 +8,7 @@ import timeCheckEvery.IUpdatable;
 
 import java.util.ArrayList;
 
-public class ProducedGoods implements IUpdatable {
+public class ProducedGoods implements IUpdatable, IProducedGoods {
     @Override
     public void updateMe() {
         getProducedGoods();
