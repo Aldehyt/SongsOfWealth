@@ -4,16 +4,12 @@ import game.GAME;
 import init.resources.RESOURCE;
 import init.resources.RESOURCES;
 import javafx.util.Pair;
-import timeCheckEvery.IUpdatable;
 
 import java.util.ArrayList;
 
-public class ProducedGoods implements IUpdatable, IProducedGoods {
-    @Override
-    public void updateMe() {
-        getProducedGoods();
-    }
-    
+public class ProducedGoods implements ICallable, IProducedGoods {
+
+
     public Pair<ArrayList<Integer>, ArrayList<Integer>> getProducedGoods() {
         ArrayList<Integer> getAmountOfProducedGoods = new ArrayList<>();
         ArrayList<Integer> getPriceOfProducedGoods = new ArrayList<>();
@@ -24,5 +20,10 @@ public class ProducedGoods implements IUpdatable, IProducedGoods {
         System.out.println(this.getClass() + " - getAmountOfProducedGoods: " + getAmountOfProducedGoods);
         System.out.println(this.getClass() + " - getPriceOfProducedGoods: " + getPriceOfProducedGoods);
         return new Pair<>(getAmountOfProducedGoods, getPriceOfProducedGoods);
+    }
+
+    @Override
+    public void call() {
+        getProducedGoods();
     }
 }

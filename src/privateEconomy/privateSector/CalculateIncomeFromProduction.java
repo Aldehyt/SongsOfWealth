@@ -1,16 +1,16 @@
 package privateEconomy.privateSector;
 
 import javafx.util.Pair;
+import privateEconomy.production.ICallable;
 import privateEconomy.production.IProducedGoods;
-import privateEconomy.production.ProducedGoods;
-import timeCheckEvery.IUpdatable;
 
 import java.util.ArrayList;
 
-public class CalculateIncomeFromProduction implements IUpdatable {
+public class CalculateIncomeFromProduction implements ICallable, ICalculateIncomeFromProduction {
 
 
     private final IProducedGoods producedGoods;
+
     public CalculateIncomeFromProduction(IProducedGoods producedGoods) {
         this.producedGoods = producedGoods;
     }
@@ -25,9 +25,8 @@ public class CalculateIncomeFromProduction implements IUpdatable {
         return wholeIncome;
     }
 
-
     @Override
-    public void updateMe() {
+    public void call() {
         wholeIncome();
     }
 }
