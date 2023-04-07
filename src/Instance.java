@@ -1,16 +1,22 @@
 
-import privateEconomy.PrivateEconomy;
+
+import privateEconomy.PrivateEconomyMain;
 import script.SCRIPT;
-import newSeasonNotifier.*;
 import snake2d.util.file.FileGetter;
 import snake2d.util.file.FilePutter;
+import timeCheckEvery.IIntervalChangingRate;
+import timeCheckEvery.SeasonalUpdateChecker;
+import timeCheckEvery.Updatables;
 
 
 import java.io.IOException;
 
 public class Instance implements SCRIPT.SCRIPT_INSTANCE {
+    PrivateEconomyMain pEcoMain = new PrivateEconomyMain();
+    public IIntervalChangingRate seasonalUpdateChecker = new SeasonalUpdateChecker(
+            new Updatables(pEcoMain.producedGoods,
+                    pEcoMain.calculateIncomeProduction));
 
-    SeasonTimeChecker privateEconomyUpdater = new SeasonTimeChecker(new PrivateEconomy());
 
     public Instance() {
 
@@ -18,7 +24,8 @@ public class Instance implements SCRIPT.SCRIPT_INSTANCE {
 
     @Override
     public void update(double v) {
-        privateEconomyUpdater.seasonChanged(3.99, 0.2);
+        seasonalUpdateChecker.intervalChange();
+
     }
 
     @Override
